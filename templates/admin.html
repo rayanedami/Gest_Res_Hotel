@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Administration</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="page-body">
+
+<div class="navbar">
+    <h2>Espace Admin</h2>
+    <div>
+        <a href="/logout">Déconnexion</a>
+    </div>
+</div>
+
+<div class="container">
+    <h1>Gestion des réservations</h1>
+
+    {% if reservations %}
+    <table>
+        <tr>
+            <th>Nom</th>
+            <th>Chambre</th>
+            <th>Date</th>
+            <th>Action</th>
+        </tr>
+
+        {% for r in reservations %}
+        <tr>
+            <td>{{ r.nom }}</td>
+            <td>{{ r.chambre }}</td>
+            <td>{{ r.date }}</td>
+            <td>
+                <a href="/supprimer/{{ loop.index0 }}" class="delete-btn">Supprimer</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        <p>Aucune réservation pour le moment.</p>
+    {% endif %}
+</div>
+
+</body>
+</html>

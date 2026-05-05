@@ -1,15 +1,14 @@
-venv/
-env/
-
-__pycache__/
-*.pyc
-
-.vscode/
-
-.DS_Store
-Thumbs.db
-
-*.log
-
-*.db
-*.sqlite3
+Gest_Res_Hotel/
+├── app.py
+├── templates/
+│   ├── index.html
+│   ├── sign_in.html
+│   ├── reservation.html
+│   └── admin.html
+├── static/
+│   ├── style.css
+│   ├── hotel-bg.png
+│   └── mazagan-logo.png
+├── README.md
+├── .gitignore
+└── LICENSE
