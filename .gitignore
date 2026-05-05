@@ -1,0 +1,8 @@
+Gest_Res_Hotel/
+│
+├── app.py
+├── templates/
+├── static/
+├── README.md
+├── .gitignore
+└── venv 
