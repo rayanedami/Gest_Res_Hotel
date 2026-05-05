@@ -2,37 +2,41 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Administration</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <title>Admin - Réservations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body class="page-body">
+<body class="admin-body">
 
-<div class="navbar">
+<div class="admin-navbar">
     <h2>Espace Admin</h2>
-    <div>
-        <a href="/logout">Déconnexion</a>
-    </div>
+    <a href="{{ url_for('logout') }}">Déconnexion</a>
 </div>
 
-<div class="container">
+<div class="admin-container">
     <h1>Gestion des réservations</h1>
 
     {% if reservations %}
     <table>
         <tr>
-            <th>Nom</th>
-            <th>Chambre</th>
-            <th>Date</th>
+            <th>Client</th>
+            <th>Destination</th>
+            <th>Arrivée</th>
+            <th>Départ</th>
+            <th>Personnes</th>
             <th>Action</th>
         </tr>
 
         {% for r in reservations %}
         <tr>
             <td>{{ r.nom }}</td>
-            <td>{{ r.chambre }}</td>
-            <td>{{ r.date }}</td>
+            <td>{{ r.destination }}</td>
+            <td>{{ r.arrivee }}</td>
+            <td>{{ r.depart }}</td>
+            <td>{{ r.personne }}</td>
             <td>
-                <a href="/supprimer/{{ loop.index0 }}" class="delete-btn">Supprimer</a>
+                <a href="{{ url_for('supprimer', index=loop.index0) }}" class="delete-btn">
+                    Supprimer
+                </a>
             </td>
         </tr>
         {% endfor %}

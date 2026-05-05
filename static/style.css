@@ -8,7 +8,7 @@ body {
     font-family: Arial, sans-serif;
 }
 
-/* Page login */
+/* LOGIN */
 .login-page {
     height: 100vh;
     background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
@@ -21,7 +21,7 @@ body {
 }
 
 .login-card {
-    width: 370px;
+    width: 360px;
     padding: 35px;
     text-align: center;
     color: white;
@@ -31,45 +31,32 @@ body {
 }
 
 .hotel-logo {
-    width: 90px;
+    width: 120px;
     margin-bottom: 10px;
 }
 
-.hotel-title {
-    font-size: 32px;
-    margin-bottom: 5px;
+.login-card h1 {
+    margin-bottom: 8px;
 }
 
-.hotel-subtitle {
+.login-card p {
     margin-bottom: 25px;
-    font-size: 18px;
 }
 
-/* Inputs login */
 .login-card input {
     width: 100%;
     height: 48px;
+    margin-bottom: 15px;
     padding: 0 15px;
-    margin-bottom: 16px;
-
-    border: 1px solid rgba(255,255,255,0.6);
     border-radius: 6px;
-
+    border: 1px solid white;
     background: rgba(255,255,255,0.15);
     color: white;
-
-    font-size: 15px;
     outline: none;
 }
 
 .login-card input::placeholder {
-    color: rgba(255,255,255,0.85);
-    font-size: 14px;
-}
-
-.login-card input:focus {
-    border-color: white;
-    background: rgba(255,255,255,0.22);
+    color: white;
 }
 
 .login-card button {
@@ -78,28 +65,17 @@ body {
     border: none;
     border-radius: 6px;
     background: white;
-    color: #1f2d3d;
-    font-size: 16px;
+    color: #2c1f0a;
     font-weight: bold;
     cursor: pointer;
 }
 
-.login-card button:hover {
-    background: #ddd;
-}
-
-.login-links {
-    margin-top: 18px;
-}
-
-.login-links a {
+.create-link {
+    display: block;
+    margin-top: 20px;
     color: white;
     text-decoration: none;
     font-weight: bold;
-}
-
-.login-links a:hover {
-    text-decoration: underline;
 }
 
 .error-message {
@@ -109,94 +85,52 @@ body {
     margin-bottom: 15px;
 }
 
-/* Pages internes */
-.page-body {
+/* ADMIN */
+.admin-body {
     background: #f4f6f9;
-    min-height: 100vh;
 }
 
-.navbar {
-    background: #1f2d3d;
+.admin-navbar {
+    background: #2c1f0a;
     color: white;
     padding: 18px 50px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
 }
 
-.navbar a {
+.admin-navbar a {
     color: white;
     text-decoration: none;
-    margin-left: 20px;
     font-weight: bold;
 }
 
-.navbar a:hover {
-    color: #3498db;
-}
-
-.container {
-    width: 80%;
-    max-width: 850px;
-    margin: 60px auto;
+.admin-container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 50px auto;
     background: white;
-    padding: 40px;
+    padding: 35px;
     border-radius: 14px;
     text-align: center;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
 }
 
-.container h1 {
-    margin-bottom: 30px;
-    color: #1f2d3d;
+.admin-container h1 {
+    margin-bottom: 25px;
 }
 
-select,
-input[type="date"] {
-    width: 70%;
-    padding: 14px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 7px;
-}
-
-.btn {
-    background: #3498db;
-    color: white;
-    padding: 13px 30px;
-    border: none;
-    border-radius: 7px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.btn:hover {
-    background: #217dbb;
-}
-
-.message {
-    background: #eafaf1;
-    color: #1e8449;
-    padding: 12px;
-    border-radius: 7px;
-    margin-bottom: 20px;
-}
-
-/* Admin table */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 25px;
 }
 
 th {
-    background: #1f2d3d;
+    background: #2c1f0a;
     color: white;
-    padding: 14px;
+    padding: 12px;
 }
 
 td {
-    padding: 14px;
+    padding: 12px;
     border-bottom: 1px solid #ddd;
 }
 
@@ -206,8 +140,4 @@ td {
     padding: 8px 14px;
     border-radius: 6px;
     text-decoration: none;
-}
-
-.delete-btn:hover {
-    background: #c0392b;
 }

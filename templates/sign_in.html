@@ -2,30 +2,29 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Create New Account</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <title>Create Account</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body class="login-page">
 
 <div class="login-card">
-    <img src="/static/mazagan-logo.png" alt="Mazagan Logo" class="hotel-logo">
-    <h1 class="hotel-title">Hotel Mazagan</h1>
-    <p class="hotel-subtitle">Create New Account</p>
+    <img src="{{ url_for('static', filename='mazagan-logo.png') }}" class="hotel-logo">
+
+    <h1>Create Account</h1>
+    <p>Client account</p>
 
     {% if message %}
-        <p class="error-message">{{ message }}</p>
+        <div class="error-message">{{ message }}</div>
     {% endif %}
 
     <form method="POST">
         <input type="text" name="nom" placeholder="Nom complet">
         <input type="email" name="email" placeholder="Email">
         <input type="password" name="password" placeholder="Mot de passe">
-        <button type="submit">Create Account</button>
+        <button type="submit">Créer compte</button>
     </form>
 
-    <div class="login-links">
-        <a href="/">I already have an account</a>
-    </div>
+    <a href="{{ url_for('home') }}" class="create-link">J'ai déjà un compte</a>
 </div>
 
 </body>

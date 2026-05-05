@@ -2,41 +2,106 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Réservation</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <title>Réservation Hôtel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='reservation.css') }}">
 </head>
-<body class="page-body">
+<body>
 
-<div class="navbar">
-    <h2>Espace Client</h2>
-    <div>
-        <a href="/logout">Déconnexion</a>
+<header class="client-navbar">
+    <div class="logo-box">
+        <img src="{{ url_for('static', filename='mazagan-logo.png') }}" alt="Mazagan Logo">
+        <div>
+            <h1>MAZAGAN</h1>
+            <p>BEACH & GOLF RESORT MOROCCO</p>
+        </div>
     </div>
-</div>
 
-<div class="container">
-    <h1>Réserver une chambre</h1>
+    <a href="{{ url_for('logout') }}" class="logout-btn">Déconnexion</a>
+</header>
+
+<main class="page-container">
+
+    <section class="booking-section">
+        <div class="booking-left">
+            <h2>Réservation d'hôtel</h2>
+            <p>Choisissez votre destination, vos dates et le nombre de personnes.</p>
+        </div>
+
+        <form method="POST" class="booking-form">
+            <div class="input-group full">
+                <label>D'où</label>
+                <input type="text" name="destination" placeholder="El Jadida, Maroc">
+            </div>
+
+            <div class="input-group">
+                <label>Arrivée</label>
+                <input type="date" name="arrivee">
+            </div>
+
+            <div class="input-group">
+                <label>Départ</label>
+                <input type="date" name="depart">
+            </div>
+
+            <div class="input-group full">
+                <label>Personne</label>
+                <select name="personne">
+                    <option value="">Choisir</option>
+                    <option value="1">1 personne</option>
+                    <option value="2">2 personnes</option>
+                    <option value="3">3 personnes</option>
+                    <option value="Famille">Famille</option>
+                </select>
+            </div>
+
+            <button type="submit">Chercher</button>
+        </form>
+    </section>
 
     {% if message %}
-        <p class="message">{{ message }}</p>
+        <div class="message">{{ message }}</div>
     {% endif %}
 
-    <form method="POST">
-        <select name="chambre">
-            {% for c in chambres %}
-            <option value="{{ c.numero }}">
-                Chambre {{ c.numero }} - {{ c.type }} - {{ c.prix }} DH
-            </option>
+    <section class="offers-section">
+        <h2>Offres spéciales</h2>
+
+        <div class="offers-grid">
+            {% for offre in offres %}
+            <div class="offer-card">
+                <div class="image-box">
+                    <img src="{{ url_for('static', filename=offre.image) }}" alt="{{ offre.nom }}">
+                    <span class="heart">♡</span>
+                </div>
+
+                <div class="offer-info">
+                    <h3>{{ offre.nom }}</h3>
+                    <p>EL Jadida, Maroc</p>
+                    <strong>{{ offre.prix }}</strong>
+                </div>
+            </div>
             {% endfor %}
-        </select>
-        <br><br>
+        </div>
+    </section>
 
-        <input type="date" name="date">
-        <br><br>
+</main>
 
-        <button class="btn" type="submit">Réserver</button>
-    </form>
+<footer>
+    © 2025 MAZAGAN BEACH & GOLF RESORT — EL JADIDA, MAROC
+</footer>
+
+{% if confirmation %}
+<div class="modal">
+    <div class="modal-content">
+        <h2>Réservation confirmée</h2>
+        <p><strong>Client :</strong> {{ confirmation.nom }}</p>
+        <p><strong>Destination :</strong> {{ confirmation.destination }}</p>
+        <p><strong>Arrivée :</strong> {{ confirmation.arrivee }}</p>
+        <p><strong>Départ :</strong> {{ confirmation.depart }}</p>
+        <p><strong>Personnes :</strong> {{ confirmation.personne }}</p>
+        <a href="{{ url_for('reservation') }}">Fermer</a>
+    </div>
 </div>
+{% endif %}
 
 </body>
 </html>

@@ -3,34 +3,31 @@ from flask import Flask, render_template, request, redirect, url_for, session
 app = Flask(__name__)
 app.secret_key = "hotel_secret_key"
 
-# Compte admin
 ADMIN_USERNAME = "admin"
 ADMIN_PASSWORD = "1234"
 
-# Données
 clients = []
 reservations = []
 
-chambres = [
-    {"numero": 101, "type": "Simple", "prix": 300},
-    {"numero": 102, "type": "Double", "prix": 500},
-    {"numero": 103, "type": "Suite", "prix": 900},
-    {"numero": 104, "type": "Familiale", "prix": 700}
+offres = [
+    {"nom": "Hotel Mazagan", "prix": "1800 MAD", "image": "offer1.png"},
+    {"nom": "Suite Mazagan", "prix": "2400 MAD", "image": "offer2.png"},
+    {"nom": "Chambre Premium", "prix": "2100 MAD", "image": "offer3.png"},
+    {"nom": "Resort Family Room", "prix": "2600 MAD", "image": "offer4.png"}
 ]
+
 
 @app.route("/", methods=["GET", "POST"])
 def home():
     if request.method == "POST":
-        identifiant = request.form["identifiant"]
-        password = request.form["password"]
+        identifiant = request.form.get("identifiant")
+        password = request.form.get("password")
 
-        # Login admin
         if identifiant == ADMIN_USERNAME and password == ADMIN_PASSWORD:
             session.clear()
             session["admin"] = True
             return redirect(url_for("admin"))
 
-        # Login client avec email
         for client in clients:
             if client["email"] == identifiant and client["password"] == password:
                 session.clear()
@@ -38,7 +35,7 @@ def home():
                 session["client_nom"] = client["nom"]
                 return redirect(url_for("reservation"))
 
-        return render_template("index.html", message="Identifiant ou mot de passe incorrect")
+        return render_template("index.html", message="Email ou mot de passe incorrect")
 
     return render_template("index.html")
 
@@ -46,9 +43,9 @@ def home():
 @app.route("/sign_in", methods=["GET", "POST"])
 def sign_in():
     if request.method == "POST":
-        nom = request.form["nom"]
-        email = request.form["email"]
-        password = request.form["password"]
+        nom = request.form.get("nom")
+        email = request.form.get("email")
+        password = request.form.get("password")
 
         if not nom or not email or not password:
             return render_template("sign_in.html", message="Tous les champs sont obligatoires")
@@ -74,38 +71,35 @@ def reservation():
         return redirect(url_for("home"))
 
     if request.method == "POST":
-        nom = session["client_nom"]
-        chambre = request.form["chambre"]
-        date = request.form["date"]
+        destination = request.form.get("destination")
+        arrivee = request.form.get("arrivee")
+        depart = request.form.get("depart")
+        personne = request.form.get("personne")
 
-        if not date:
+        if not destination or not arrivee or not depart or not personne:
             return render_template(
                 "reservation.html",
-                chambres=chambres,
-                message="La date est obligatoire"
+                offres=offres,
+                message="Tous les champs sont obligatoires"
             )
 
-        for r in reservations:
-            if r["chambre"] == chambre and r["date"] == date:
-                return render_template(
-                    "reservation.html",
-                    chambres=chambres,
-                    message="Cette chambre est déjà réservée pour cette date"
-                )
+        reservation_data = {
+            "nom": session["client_nom"],
+            "destination": destination,
+            "arrivee": arrivee,
+            "depart": depart,
+            "personne": personne
+        }
 
-        reservations.append({
-            "nom": nom,
-            "chambre": chambre,
-            "date": date
-        })
+        reservations.append(reservation_data)
 
         return render_template(
             "reservation.html",
-            chambres=chambres,
-            message="Réservation enregistrée avec succès"
+            offres=offres,
+            confirmation=reservation_data
         )
 
-    return render_template("reservation.html", chambres=chambres)
+    return render_template("reservation.html", offres=offres)
 
 
 @app.route("/admin")
