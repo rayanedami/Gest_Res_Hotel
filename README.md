@@ -1,30 +1,30 @@
-# Gestion de Réservation Hôtel
+# 🏨 Gestion de Réservation Hôtel
 
-## Description
+## 📌 Description
 Application web développée avec Flask (Python), HTML et CSS permettant de gérer les réservations d’un hôtel.
 
-## Fonctionnalités
+## 👤 Fonctionnalités
 
-### Côté Client :
+### Côté Client
 - Réserver une chambre
 - Choisir une date
 - Voir les chambres disponibles
 
-### Côté Admin :
+### ⚙️ Côté Admin
 - Voir toutes les réservations
 - Supprimer une réservation
 - Gérer la disponibilité
 
-## Technologies utilisées
+## 🛠️ Technologies utilisées
 - Python
 - Flask
 - HTML / CSS
 
-## Lancer le projet
+## 🚀 Lancer le projet
 
-1. Ouvrir le projet dans VS Code
-2. Activer l’environnement virtuel
-3. Installer Flask
+1. Ouvrir le projet dans VS Code  
+2. Activer l’environnement virtuel  
+3. Installer Flask  
 4. Lancer :
 
 ```bash
